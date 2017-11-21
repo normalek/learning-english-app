@@ -37,8 +37,8 @@ public class MainController {
 	}
 
 	@RequestMapping("/greeting")
-	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-		model.addAttribute("name", name);
+	public String greeting(Model model) {
+		model.addAttribute("dictionary", DictionaryRepository.findAll());
 		return "greeting";
 	}
 }
