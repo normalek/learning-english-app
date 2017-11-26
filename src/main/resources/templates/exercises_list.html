@@ -10,19 +10,23 @@
 </head>
 <body>
 <div class="container">
-    <div th:if="${not #lists.isEmpty(dictionary)}">
+    <div th:if="${not #lists.isEmpty(timers)}">
         <h2>Dictionary</h2>
         <table class="table table-striped">
             <tr>
                 <!--<th>Id</th>-->
                 <th>Word</th>
-                <th>Explanation</th>
+                <th>Gradation</th>
+                <th>Counter</th>
+                <th>Need to repeat</th>
             </tr>
-            <tr th:each="dictionary : ${dictionary}">
+            <tr th:each="timer : ${timers}">
                 <!--<td th:text="${dictionary.id_rec}"><a href="/dictionary/view?id=${dictionary.id_rec}">Id</a></td>-->
-                <td th:text="${dictionary.word}"></td>
-                <td th:text="${dictionary.explanation}"></td>
-                <td><a th:href="${ '/dictionary/view?id=' + dictionary.id_rec}">View</a></td>
+                <td th:text="${timer.dictionaryItem?.word}"></td>
+                <td th:text="${timer.gradationItem?.name}"></td>
+                <td th:text="${timer.counter}"></td>
+                <td th:text="${timer.need_repeat}? 'Yes' : 'No'"></td>
+                <!--<td><a th:href="${ '/dictionary/view?id=' + dictionary.id_rec}">View</a></td>-->
                 <!--<td><a th:href="${'/product/edit/' + dictionary.id_rec}">Edit</a></td>-->
             </tr>
         </table>
