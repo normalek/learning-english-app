@@ -9,6 +9,7 @@
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
+<!--<div th:replace="fragments/header :: header"></div>-->
 <div class="container">
     <div th:if="${not #lists.isEmpty(dictionary)}">
         <h2>Dictionary</h2>
