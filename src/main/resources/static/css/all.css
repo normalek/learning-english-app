@@ -1,11 +1,16 @@
-.white_text {
-    color: white;
-}
-.maroon {
-    background-color: #800000;
+.maroon{
+    background-color: maroon;
     color: white;
 }
 .green {
-    background-color: #008080;
+    background-color: forestgreen;
+    color: white;
+}
+.red {
+    background-color: darkorange;
+    color: white;
+}
+.yellow {
+    background-color: yellow;
     color: white;
 }
