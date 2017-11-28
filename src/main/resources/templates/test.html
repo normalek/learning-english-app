@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/webjars/bootstrap/4.0.0-beta.2/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/all.css" th:href="@{/css/all.css}" />
+    <title>English test</title>
+</head>
+<body>
+<div th:if="${not #lists.isEmpty(timers)}">
+    <h1>Test</h1>
+    <form th:action="@{/exercises/test_result}" method="post" class="form-inline">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th>Explanation</th>
+                <th>Word</th>
+                <th>State</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="timer : ${timers}">
+                <td th:text="${timer.dictionaryItem.explanation}"></td>
+                <td><input type="text" th:value="${timer.dictionaryItem.current_word}" title="123"/></td>
+                <td><input type="hidden" th:value="${timer.id_rec}"/></td>
+                <td th:class="${timer.gradationItem?.id_rec == 1} ? 'maroon' : (${timer.gradationItem?.id_rec == 2} ? 'red' : (${timer.gradationItem?.id_rec == 3} ? 'yellow' : 'green'))"></td>
+                <!--<td th:text="${currentClient.getDescription()}"></td>-->
+            </tr>
+            </tbody>
+        </table>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
+</body>
+</html>

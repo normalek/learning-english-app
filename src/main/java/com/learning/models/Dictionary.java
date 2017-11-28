@@ -9,6 +9,7 @@ public class Dictionary {
     private Integer id_rec;
     private String word;
     private String explanation;
+    private String current_word;
     @OneToOne(mappedBy = "dictionaryItem")
     private Timers timers;
 
@@ -34,6 +35,14 @@ public class Dictionary {
 
     public void setExplanation(String explanation) {
         this.explanation = explanation;
+    }
+
+    public String getCurrent_word() {
+        return current_word;
+    }
+
+    public void setCurrent_word(String current_word) {
+        this.current_word = current_word;
     }
 
     public Timers getTimers() {

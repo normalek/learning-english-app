@@ -5,9 +5,10 @@ import com.learning.utils.TimersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller    // This means that this class is a Controller
 @RequestMapping(path = "/exercises") // This means URL's start with /demo (after Application path)
@@ -26,5 +27,18 @@ public class TimersController {
     public String getTimersList(Model model) {
         model.addAttribute("timers", timersRepository.findAll());
         return "exercises_list";
+    }
+
+    @RequestMapping("/test")
+    public String getTimersTest(Model model) {
+        model.addAttribute("timers", timersRepository.findAll());
+        return "test";
+    }
+
+    @PostMapping("/test_result")
+    @ResponseBody
+    public String timersSubmit(ArrayList<Timers> timers) {
+        System.out.println(timers.size());
+        return "redirect:/exercises/list";
     }
 }
