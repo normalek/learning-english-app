@@ -1,20 +1,24 @@
 .maroon{
-    width: 100px;
+    width: 80px;
     background-color: maroon;
     color: white;
 }
 .green {
-    width: 100px;
+    width: 80px;
     background-color: forestgreen;
     color: white;
 }
 .red {
-    width: 100px;
+    width: 80px;
     background-color: darkorange;
     color: white;
 }
 .yellow {
-    width: 100px;
+    width: 80px;
     background-color: yellow;
     color: white;
+}
+.hideANDseek
+{
+    display: none;
 }

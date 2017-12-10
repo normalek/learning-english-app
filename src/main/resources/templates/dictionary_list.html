@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dictionary control page</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/webjars/bootstrap/4.0.0-beta.2/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen" />
+          rel="stylesheet" media="screen"/>
 
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
@@ -18,12 +18,14 @@
                 <!--<th>Id</th>-->
                 <th>Word</th>
                 <th>Explanation</th>
+                <th colspan="2">Actions</th>
             </tr>
             <tr th:each="dictionary : ${dictionary}">
                 <!--<td th:text="${dictionary.id_rec}"><a href="/dictionary/view?id=${dictionary.id_rec}">Id</a></td>-->
                 <td th:text="${dictionary.word}"></td>
                 <td th:text="${dictionary.explanation}"></td>
-                <td><a th:href="${'/dictionary/view?id=' + dictionary.id_rec}" class="btn btn-primary btn-xs">View</a></td>
+                <td><a th:href="${'/dictionary/view?id=' + dictionary.id_rec}" class="btn btn-primary btn-xs">View</a>
+                </td>
                 <td><a th:href="${'/dictionary/edit?id=' + dictionary.id_rec}" class="btn btn-info btn-xs">Edit</a></td>
             </tr>
         </table>

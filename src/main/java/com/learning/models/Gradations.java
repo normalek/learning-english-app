@@ -1,6 +1,9 @@
 package com.learning.models;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Gradations {
@@ -9,8 +12,6 @@ public class Gradations {
     private Integer id_rec;
     private String name;
     private String description;
-//    @OneToOne(mappedBy = "gradationItem")
-//    private Timers timers;
 
     public Integer getId_rec() {
         return id_rec;
@@ -36,11 +37,4 @@ public class Gradations {
         this.description = description;
     }
 
-//    public Timers getTimers() {
-//        return timers;
-//    }
-//
-//    public void setTimers(Timers timers) {
-//        this.timers = timers;
-//    }
 }

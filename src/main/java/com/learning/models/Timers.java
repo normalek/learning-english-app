@@ -1,7 +1,6 @@
 package com.learning.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Timers {
@@ -14,8 +13,6 @@ public class Timers {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_word")
     private Dictionary dictionaryItem;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_gradation")
     @ManyToOne
     @JoinColumn(name = "id_gradation")
     private Gradations gradationItem;
