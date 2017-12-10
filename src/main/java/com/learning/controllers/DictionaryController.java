@@ -33,22 +33,16 @@ public class DictionaryController {
 	}
 
 	@GetMapping("/edit")
-	public String greetingForm(Model model, @RequestParam Integer id) {
+	public String editWord(Model model, @RequestParam Integer id) {
 		model.addAttribute("word", DictionaryRepository.findOne(id));
 		return "dictionary_edit";
 	}
 
 	@PostMapping("/edit")
-	public String greetingSubmit(@ModelAttribute Dictionary word) {
+	public String saveWord(@ModelAttribute Dictionary word) {
 		DictionaryRepository.save(word);
 		return "dictionary_list";
 	}
-	
-//	@GetMapping(path="/all")
-//	public @ResponseBody Iterable<Dictionary> getAllWords() {
-//		// This returns a JSON or XML with the users
-//		return DictionaryRepository.findAll();
-//	}
 
 	@RequestMapping("/list")
 	public String getDictionaryList(Model model) {
