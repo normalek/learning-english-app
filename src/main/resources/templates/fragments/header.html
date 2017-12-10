@@ -7,46 +7,23 @@
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
-    <!--<a class="navbar-brand" href="#">Navbar</a>-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="header(activeTab)">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item" th:classappend="${activeTab == 'dictionary' ? 'active' : ''}">
                 <a class="nav-link" th:href="@{/dictionary/list}">Dictionary<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" th:classappend="${activeTab == 'results' ? 'active' : ''}">
                 <a class="nav-link" th:href="@{/exercises/list}">Results</a>
             </li>
-            <!--<li class="nav-item">-->
-                <!--<a class="nav-link" href="#">Pricing</a>-->
-            <!--</li>-->
+            <li class="nav-item" th:classappend="${activeTab == 'test' ? 'active' : ''}">
+                <a class="nav-link" th:href="@{/exercises/test}">Test</a>
+            </li>
         </ul>
     </div>
 </nav>
-<!--<nav class="navbar navbar-expand-lg navbar-light bg-light th:fragment="header">-->
-    <!--<div class="container">-->
-        <!--<div class="navbar-header">-->
-            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-                <!--<span class="icon-bar"></span>-->
-            <!--</button>-->
-            <!--<a class="navbar-brand" href="#">My English</a>-->
-        <!--</div>-->
-        <!--<div class="navbar-collapse collapse">-->
-            <!--<ul class="nav navbar-nav">-->
-                <!--<li th:classappend="${module == 'dictionary' ? 'active' : ''}">-->
-                    <!--<a href="#" th:href="@{/dictionary/list}">Dictionary</a>-->
-                <!--</li>-->
-                <!--<li th:classappend="${module == 'results' ? 'active' : ''}">-->
-                    <!--<a href="#" th:href="@{/exercises/list}">Results</a>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
 </body>
 </html>

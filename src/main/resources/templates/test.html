@@ -11,7 +11,7 @@
     <title>English test</title>
 </head>
 <body>
-<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/header :: header(test)"></div>
 <div th:if="${not #lists.isEmpty(timers)}" th:object="${timers}">
     <h1>Test</h1>
     <form th:action="@{/exercises/test_result}" method="post" class="form-inline">

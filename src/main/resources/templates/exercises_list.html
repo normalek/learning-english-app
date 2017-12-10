@@ -10,7 +10,7 @@
           href="../../css/all.css" th:href="@{/css/all.css}" />
 </head>
 <body>
-<!--<div th:replace="fragments/header :: header"></div>-->
+<div th:replace="fragments/header :: header(results)"></div>
 <div class="container">
     <div th:if="${not #lists.isEmpty(timers)}">
         <h2>Results</h2>
