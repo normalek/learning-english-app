@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Map;
 
-@Controller    // This means that this class is a Controller
-@RequestMapping(path = "/exercises") // This means URL's start with /demo (after Application path)
+@Controller 
+@RequestMapping(path = "/exercises")
 public class TimersController {
     @Autowired
     private TimersRepository timersRepository;
@@ -46,7 +46,7 @@ public class TimersController {
     @PostMapping("/test_result")
     public String timersSubmit(HttpServletRequest request, Model model, @ModelAttribute ArrayList<Timers> timersWrapper, @RequestParam Map requestParams) {
         analyzeTest(request);
-        return "redirect:exercises_list";
+        return "redirect:list";
     }
 
     private void analyzeTest(HttpServletRequest request) {
