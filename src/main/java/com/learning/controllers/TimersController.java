@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller    // This means that this class is a Controller
 @RequestMapping(path = "/exercises") // This means URL's start with /demo (after Application path)
@@ -32,13 +34,32 @@ public class TimersController {
     @RequestMapping("/test")
     public String getTimersTest(Model model) {
         model.addAttribute("timers", timersRepository.findAll());
+        System.out.println(timersRepository.findAll());
         return "test";
     }
 
-    @PostMapping("/test_result")
-    @ResponseBody
-    public String timersSubmit(ArrayList<Timers> timers) {
-        System.out.println(timers.size());
+//    @PostMapping("/test_result")
+//    @ResponseBody
+//    public String timersSubmit(ArrayList<Timers> timers) {
+//        System.out.println(timers.size());
+//        return "exercises_list";
+//    }
+
+    @RequestMapping(value="/test_result", method=RequestMethod.POST)
+    public String timersSubmit(HttpServletRequest request, Model model, @ModelAttribute ArrayList<Timers> timers) {
+//        timersRepository.
+        System.out.println("Inside POST");
+        System.out.println(timers);
+        System.out.println(request.getParameter("timers"));
+//        Map<String,String[]> map =request.getParameterMap();
+//        for(String key: map.keySet()){
+//            String[] values = map.get(key);
+//            System.out.println(key+": ");
+//            for(String value: values){
+//                System.out.println("--->"+ value);
+//            }
+//        }
+        model.addAttribute(timers);
         return "redirect:/exercises/list";
     }
 }

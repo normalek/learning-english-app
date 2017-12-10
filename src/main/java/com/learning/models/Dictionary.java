@@ -10,8 +10,8 @@ public class Dictionary {
     private String word;
     private String explanation;
     private String current_word;
-    @OneToOne(mappedBy = "dictionaryItem")
-    private Timers timers;
+//    @OneToOne(mappedBy = "dictionaryItem")
+//    private Timers timers;
 
     public Integer getId_rec() {
         return id_rec;
@@ -45,12 +45,12 @@ public class Dictionary {
         this.current_word = current_word;
     }
 
-    public Timers getTimers() {
-        return timers;
-    }
-
-    public void setTimers(Timers timers) {
-        this.timers = timers;
-    }
+//    public Timers getTimers() {
+//        return timers;
+//    }
+//
+//    public void setTimers(Timers timers) {
+//        this.timers = timers;
+//    }
 }
 

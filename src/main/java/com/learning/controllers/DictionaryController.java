@@ -5,10 +5,7 @@ import com.learning.utils.DictionaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="/dictionary") // This means URL's start with /demo (after Application path)
@@ -33,6 +30,18 @@ public class DictionaryController {
 	@RequestMapping("/view")
 	public @ResponseBody Dictionary getDictionaryId(@RequestParam Integer id) {
 		return DictionaryRepository.findOne(id);
+	}
+
+	@GetMapping("/edit")
+	public String greetingForm(Model model, @RequestParam Integer id) {
+		model.addAttribute("word", DictionaryRepository.findOne(id));
+		return "dictionary_edit";
+	}
+
+	@PostMapping("/edit")
+	public String greetingSubmit(@ModelAttribute Dictionary word) {
+		DictionaryRepository.save(word);
+		return "dictionary_list";
 	}
 	
 //	@GetMapping(path="/all")

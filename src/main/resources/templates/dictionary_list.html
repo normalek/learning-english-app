@@ -9,7 +9,7 @@
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
-<!--<div th:replace="fragments/header :: header"></div>-->
+<div th:replace="fragments/header :: header"></div>
 <div class="container">
     <div th:if="${not #lists.isEmpty(dictionary)}">
         <h2>Dictionary</h2>
@@ -23,8 +23,8 @@
                 <!--<td th:text="${dictionary.id_rec}"><a href="/dictionary/view?id=${dictionary.id_rec}">Id</a></td>-->
                 <td th:text="${dictionary.word}"></td>
                 <td th:text="${dictionary.explanation}"></td>
-                <td><a th:href="${ '/dictionary/view?id=' + dictionary.id_rec}">View</a></td>
-                <!--<td><a th:href="${'/product/edit/' + dictionary.id_rec}">Edit</a></td>-->
+                <td><a th:href="${'/dictionary/view?id=' + dictionary.id_rec}" class="btn btn-primary btn-xs">View</a></td>
+                <td><a th:href="${'/dictionary/edit?id=' + dictionary.id_rec}" class="btn btn-info btn-xs">Edit</a></td>
             </tr>
         </table>
 
