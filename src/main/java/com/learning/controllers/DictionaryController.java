@@ -41,7 +41,7 @@ public class DictionaryController {
 	@PostMapping("/edit")
 	public String saveWord(@ModelAttribute Dictionary word) {
 		DictionaryRepository.save(word);
-		return "dictionary_list";
+		return "redirect:list";
 	}
 
 	@RequestMapping("/list")
