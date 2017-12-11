@@ -35,6 +35,11 @@ public class TimersController {
         model.addAttribute("timers", timersRepository.findAll());
         return "exercises_list";
     }
+    @RequestMapping("/prepare")
+    public String prepareTest(Model model) {
+        model.addAttribute("timers", timersRepository.findAll());
+        return "prepare";
+    }
 
     @RequestMapping("/test")
     public String getTimersTest(Model model) {
@@ -44,7 +49,7 @@ public class TimersController {
     }
 
     @PostMapping("/test_result")
-    public String timersSubmit(HttpServletRequest request, Model model, @ModelAttribute ArrayList<Timers> timersWrapper, @RequestParam Map requestParams) {
+    public String timersSubmit(HttpServletRequest request, @ModelAttribute ArrayList<Timers> timersWrapper) {
         analyzeTest(request);
         return "redirect:list";
     }
