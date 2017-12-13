@@ -35,6 +35,7 @@ public class TimersController {
         model.addAttribute("timers", timersRepository.findAll());
         return "exercises_list";
     }
+    
     @RequestMapping("/prepare")
     public String prepareTest(Model model) {
         model.addAttribute("timers", timersRepository.findAll());
