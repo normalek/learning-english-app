@@ -6,6 +6,8 @@ import com.learning.utils.GradationsRepository;
 import com.learning.utils.TimersRepository;
 import com.learning.utils.TimersWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +48,8 @@ public class TimersController {
 
     @RequestMapping("/test")
     public String getTimersTest(Model model) {
-        List<Timers> timers = timersRepository.findAll();
+        Pageable topTwenty = new PageRequest(0, 20);
+        List<Timers> timers = timersRepository.findFirstWorst(topTwenty);
         Collections.shuffle(timers);
         wrapper.setTimers(new ArrayList<>(timers));
         model.addAttribute("timersWrapper", wrapper);
