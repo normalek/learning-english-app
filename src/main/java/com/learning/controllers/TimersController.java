@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @Controller 
@@ -44,7 +46,9 @@ public class TimersController {
 
     @RequestMapping("/test")
     public String getTimersTest(Model model) {
-        wrapper.setTimers(new ArrayList<>(timersRepository.findAll()));
+        List<Timers> timers = timersRepository.findAll();
+        Collections.shuffle(timers);
+        wrapper.setTimers(new ArrayList<>(timers));
         model.addAttribute("timersWrapper", wrapper);
         return "test";
     }
