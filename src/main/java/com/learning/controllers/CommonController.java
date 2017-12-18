@@ -10,5 +10,9 @@ public class CommonController {
     public String login() {
         return "/login";
     }
+    @GetMapping("/home")
+    public String home() {
+        return "/home";
+    }
     
 }

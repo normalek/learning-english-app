@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/all.css" th:href="@{/css/all.css}"/>
+    <title>Home page</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header(home)"></div>
+<div class="container">
+    <div class="starter-template">
+        <h1>Welcome!</h1>
+        <p class="lead"> You're on smart English learning application page.</p>
+    </div>
+</div>
+</body>
+</html>

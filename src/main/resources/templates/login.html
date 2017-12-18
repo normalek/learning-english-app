@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
@@ -11,16 +11,22 @@
     <title>English test</title>
 </head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
+<div th:replace="fragments/header :: header(login)"></div>
+<div class="container">
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+    <form class="form-signin" th:action="@{/login}" method="post">
+        <h1 class="form-signin-heading text-muted">Sign In</h1>
+        <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus=""/>
+        <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Sign In
+        </button>
+    </form>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
 </body>
 </html>
