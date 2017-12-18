@@ -21,6 +21,9 @@ repositories {
     mavenCentral()
 }
 
+ext['thymeleaf-layout-dialect.version'] = '2.0.0'
+ext['thymeleaf.version'] = '3.0.1.RELEASE'
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -31,11 +34,12 @@ dependencies {
     // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     //add bootstrap
-    compile 'org.webjars:bootstrap:4.0.0-beta.2'
+    compile 'org.webjars:bootstrap:3.3.5'
     compile 'org.webjars:jquery:3.2.1'
     // Use MySQL Connector-J
     compile 'mysql:mysql-connector-java'
     compile("org.springframework.boot:spring-boot-starter-security")
+    compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.1.RELEASE"
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
