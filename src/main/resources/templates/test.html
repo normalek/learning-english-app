@@ -31,7 +31,7 @@
             <!--</th:block>-->
             <tr th:each="timer,i : ${timersWrapper.timers}">
                 <td th:text="${timer.dictionaryItem.explanation}"></td>
-                <td><input type="text" th:field="*{timers[__${i.index}__].dictionaryItem.current_word}" th:size="30"/></td>
+                <td><input autocomplete="off" class="form-control" type="text" th:field="*{timers[__${i.index}__].dictionaryItem.current_word}" th:size="30"/></td>
                 <td th:class="${timer.gradationItem?.id_rec == 1} ? 'maroon' : (${timer.gradationItem?.id_rec == 2} ? 'red' : (${timer.gradationItem?.id_rec == 3} ? 'yellow' : 'green'))"></td>
                 <td class="hideANDseek"><input type="hidden" th:field="*{timers[__${i.index}__].id_rec}"/></td>
                 <!--<td th:text="${currentClient.getDescription()}"></td>-->

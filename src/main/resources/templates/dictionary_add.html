@@ -13,9 +13,9 @@
 <div th:replace="fragments/header :: header(edit)"></div>
 <div class="container">
     <div class="page-header">
-        <h2>Edit word</h2>
+        <h2>Add word</h2>
     </div>
-    <form th:action="@{/dictionary/edit}" th:object="${word}" method="post" class="form-horizontal">
+    <form th:action="@{/dictionary/add}" th:object="${word}" method="post" class="form-horizontal">
         <input type="hidden" th:field="*{id_rec}"/>
         <div class="form-group"><p>Word: <input type="text" th:field="*{word}" class="form-control"/></p></div>
         <div class="form-group"><p>Explanation: <input type="text" th:field="*{explanation}" class="form-control"/></p>
@@ -23,7 +23,6 @@
         <div class="form-group">
             <p>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-default">Reset</button>
             </p>
         </div>
     </form>

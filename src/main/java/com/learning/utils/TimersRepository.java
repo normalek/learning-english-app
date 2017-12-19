@@ -11,4 +11,5 @@ public interface TimersRepository extends JpaRepository<Timers, Integer> {
 
     @Query("select t from Timers t where id_gradation = 1")
     List<Timers> findFirstWorst(Pageable pageable);
+
 }

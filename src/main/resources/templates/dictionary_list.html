@@ -5,28 +5,30 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
           rel="stylesheet" media="screen"/>
-
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/all.css" th:href="@{/css/all.css}" />
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
 <div th:replace="fragments/header :: header(dictionary)"></div>
 <div class="container">
     <div th:if="${not #lists.isEmpty(dictionary)}">
-        <h2>Dictionary</h2>
+        <h2 class="dct-header-btn">Dictionary</h2>
+        <a th:href="${'/dictionary/add'}" class="btn btn-success btn-header">Create</a>
         <table class="table table-striped">
             <tr>
                 <!--<th>Id</th>-->
                 <th>Word</th>
                 <th>Explanation</th>
-                <th colspan="2">Actions</th>
+                <th colspan="3">Actions</th>
             </tr>
             <tr th:each="dictionary : ${dictionary}">
                 <!--<td th:text="${dictionary.id_rec}"><a href="/dictionary/view?id=${dictionary.id_rec}">Id</a></td>-->
                 <td th:text="${dictionary.word}"></td>
                 <td th:text="${dictionary.explanation}"></td>
-                <td><a th:href="${'/dictionary/view?id=' + dictionary.id_rec}" class="btn btn-primary btn-xs">View</a>
-                </td>
-                <td><a th:href="${'/dictionary/edit?id=' + dictionary.id_rec}" class="btn btn-info btn-xs">Edit</a></td>
+                <!--<td><a th:href="${'/dictionary/view?id=' + dictionary.id_rec}" class="btn btn-primary btn-sm">View</a></td>-->
+                <td><a th:href="${'/dictionary/edit?id=' + dictionary.id_rec}" class="btn btn-info btn-sm">Edit</a></td>
+                <td><a th:href="${'/dictionary/delete?id=' + dictionary.id_rec}" class="btn btn-danger btn-sm">Delete</a></td>
             </tr>
         </table>
 
