@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +49,7 @@ public class TimersController {
     public String getTimersTest(Model model) {
         Pageable topTwenty = new PageRequest(0, 20);
         List<Timers> timers = timersRepository.findFirstWorst(topTwenty);
-        Collections.shuffle(timers);
+//        Collections.shuffle(timers);
         wrapper.setTimers(new ArrayList<>(timers));
         model.addAttribute("timersWrapper", wrapper);
         return "test";
@@ -74,6 +73,7 @@ public class TimersController {
                 System.out.println("id_rec: " + id_rec + ",input_word: " + input_word + ", actual_word: " + record.getDictionaryItem().getWord());
                 Integer id_curr_grad = record.getGradationItem().getId_rec();
                 if (record.getGradationItem().getId_rec() != 1 && !record.getDictionaryItem().getWord().equals(input_word)) {//decreasing gradation case
+                    System.out.println("into decreasing" + record.getDictionaryItem().getWord());
                     Gradations bad_gradation = gradationsRepository.findOne(id_curr_grad-1);
                     record.setGradationItem(bad_gradation);
                     System.out.println("new bad gradation: " + record.getGradationItem().getName());

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TimersRepository extends JpaRepository<Timers, Integer> {
 
-    @Query("select t from Timers t where id_gradation = 1")
+    @Query("select t from Timers t where (id_gradation between 1 and 3) order by rand()")
     List<Timers> findFirstWorst(Pageable pageable);
 
 }
