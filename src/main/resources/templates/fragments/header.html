@@ -3,7 +3,7 @@
 
 <head>
     <link th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen" />
+          rel="stylesheet" media="screen"/>
     <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
 </head>
 <body>
@@ -24,17 +24,24 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li th:if="${#authorization.expression('isAuthenticated()')}">
+                <a  th:href="@{/users/view(name=${#authentication.getPrincipal().getUsername()})}"><span class="glyphicon glyphicon-user"
+                                  th:text="'&nbsp;' + ${#authentication.getPrincipal().getUsername()}"></span></a>
+            </li>
             <li th:if="${#authorization.expression('!isAuthenticated()')}">
                 <a href="/login" th:href="@{/login}">
                     <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Login
                 </a>
             </li>
             <li th:if="${#authorization.expression('isAuthenticated()')}">
+
                 <a href="/logout" th:href="@{#}" onclick="$('#form').submit();">
                     <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
                 </a>
                 <form style="visibility: hidden" id="form" method="post" action="#" th:action="@{/logout}"></form>
+
             </li>
+
         </ul>
     </div>
 </nav>

@@ -3,13 +3,13 @@ package com.learning.controller;
 import com.learning.models.Gradations;
 import com.learning.models.History;
 import com.learning.models.Timers;
-import com.learning.utils.GradationsRepository;
-import com.learning.utils.HistoryRepository;
-import com.learning.utils.TimersRepository;
-import com.learning.utils.TimersWrapper;
+import com.learning.models.Users;
+import com.learning.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,9 @@ public class TimersController {
     @Autowired
     private TimersWrapper wrapper;
     @Autowired
-    private HistoryRepository HistoryRepository;
+    private HistoryRepository historyRepository;
+    @Autowired
+    private UsersRepository usersRepository;
     @Autowired
     private History history;
 
@@ -54,9 +56,11 @@ public class TimersController {
 
     @RequestMapping("/test")
     public String getTimersTest(Model model) {
-        Pageable topTwenty = new PageRequest(0, 20);
-        List<Timers> timers = timersRepository.findFirstWorst(topTwenty);
-//        Collections.shuffle(timers);
+        //flexible approach with studying words from user profile
+        UserDetails  current_user_details = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users current_user = usersRepository.findByName(current_user_details.getUsername());
+        Pageable topWords = new PageRequest(0, current_user.getWords());
+        List<Timers> timers = timersRepository.findFirstWorst(topWords);
         wrapper.setTimers(new ArrayList<>(timers));
         model.addAttribute("timersWrapper", wrapper);
         return "test";
@@ -108,6 +112,6 @@ public class TimersController {
         history.setIncorrect(bad_counter);
         history.setTotal((byte) (good_counter + bad_counter));
         System.out.println(history.toString());
-        HistoryRepository.save(history);
+        historyRepository.save(history);
     }
 }
