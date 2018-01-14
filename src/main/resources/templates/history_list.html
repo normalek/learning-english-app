@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>History of tests</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <script th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/all.css" th:href="@{/css/all.css}" />
+</head>
+<body>
+<div th:replace="fragments/header :: header(history)"></div>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(history)}">
+        <h2>History of tests</h2>
+        <table class="table table-striped">
+            <tr>
+                <!--<th>Id</th>-->
+                <th>Date</th>
+                <th>Correct</th>
+                <th>Mistakes</th>
+                <th>Total</th>
+                <th>Percentage</th>
+            </tr>
+            <tr th:each="record : ${history}">
+                <!--<td th:text="${dictionary.id_rec}"><a href="/dictionary/view?id=${dictionary.id_rec}">Id</a></td>-->
+                <td th:text="${record.date}"></td>
+                <!--<td th:class="${timer.gradationItem?.id_rec == 1 ? 'maroon' : 'green'}"></td>-->
+                <!--<td th:class="${timer.gradationItem?.id_rec == 1} ? 'maroon' : (${timer.gradationItem?.id_rec == 2} ? 'red' : (${timer.gradationItem?.id_rec == 3} ? 'yellow' : 'green'))"></td>-->
+                <td th:text="${record.right}"></td>
+                <td th:text="${record.wrong}"></td>
+                <td th:text="${record.total}"></td>
+                <td th:text="${(record.right * 100) / record.total} + '%'"></td>
+                <!--<td><a th:href="${ '/dictionary/view?id=' + dictionary.id_rec}">View</a></td>-->
+                <!--<td><a th:href="${'/product/edit/' + dictionary.id_rec}">Edit</a></td>-->
+            </tr>
+            <tr>
+                <td><b>Result</b></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><b th:text="${average} + '%'"></b></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+</body>
+</html>

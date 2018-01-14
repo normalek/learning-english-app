@@ -1,8 +1,10 @@
 package com.learning.controllers;
 
 import com.learning.models.Gradations;
+import com.learning.models.History;
 import com.learning.models.Timers;
 import com.learning.utils.GradationsRepository;
+import com.learning.utils.HistoryRepository;
 import com.learning.utils.TimersRepository;
 import com.learning.utils.TimersWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@Controller 
+@Controller
 @RequestMapping(path = "/exercises")
 public class TimersController {
     @Autowired
@@ -26,6 +30,10 @@ public class TimersController {
     private GradationsRepository gradationsRepository;
     @Autowired
     private TimersWrapper wrapper;
+    @Autowired
+    private HistoryRepository HistoryRepository;
+//    @Autowired
+//    private History history;
 
     @RequestMapping("/view")
     public @ResponseBody
@@ -38,7 +46,7 @@ public class TimersController {
         model.addAttribute("timers", timersRepository.findAll());
         return "exercises_list";
     }
-    
+
     @RequestMapping("/prepare")
     public String prepareTest(Model model) {
         model.addAttribute("timers", timersRepository.findAll());
@@ -64,6 +72,9 @@ public class TimersController {
     private void analyzeTest(HttpServletRequest request) {
         Map<String, String[]> map = request.getParameterMap();
         String input_word = "";
+        History history = HistoryRepository.findOne(1);
+        byte bad_counter = 0;
+        byte good_counter = 0;
         for (String key : map.keySet()) {
             if (key.contains("current_word")) {
                 input_word = map.get(key)[0];
@@ -72,19 +83,34 @@ public class TimersController {
                 Timers record = timersRepository.findOne(Integer.valueOf(id_rec));
                 System.out.println("id_rec: " + id_rec + ",input_word: " + input_word + ", actual_word: " + record.getDictionaryItem().getWord());
                 Integer id_curr_grad = record.getGradationItem().getId_rec();
+                //section for storing records
+                if (!record.getDictionaryItem().getWord().equals(input_word)) {
+                    bad_counter++;
+                } else {
+                    good_counter++;
+                }
+                //section for decreasing/increasing records just in case for not Maroon color
                 if (record.getGradationItem().getId_rec() != 1 && !record.getDictionaryItem().getWord().equals(input_word)) {//decreasing gradation case
                     System.out.println("into decreasing" + record.getDictionaryItem().getWord());
-                    Gradations bad_gradation = gradationsRepository.findOne(id_curr_grad-1);
+                    Gradations bad_gradation = gradationsRepository.findOne(id_curr_grad - 1);
                     record.setGradationItem(bad_gradation);
                     System.out.println("new bad gradation: " + record.getGradationItem().getName());
                     timersRepository.save(record);
                 } else if (record.getGradationItem().getId_rec() != 4 && record.getDictionaryItem().getWord().equals(input_word)) {//increasing gradation case
-                    Gradations good_gradation = gradationsRepository.findOne(id_curr_grad+1);
+                    Gradations good_gradation = gradationsRepository.findOne(id_curr_grad + 1);
                     record.setGradationItem(good_gradation);
                     System.out.println("new good gradation: " + record.getGradationItem().getName());
                     timersRepository.save(record);
                 }
             }
         }
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//        history.setId_rec(0);
+//        history.setDate(LocalDate.now().toString());
+        history.setRight(good_counter);
+        history.setWrong(bad_counter);
+        history.setTotal((byte) 20);
+        System.out.println(history.toString());
+//        HistoryRepository.save(history);
     }
 }

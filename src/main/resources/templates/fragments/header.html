@@ -19,6 +19,9 @@
             <li th:classappend="${activeTab == 'test' ? 'active' : ''}">
                 <a th:href="@{/exercises/test}"><b>Test</b></a>
             </li>
+            <li th:classappend="${activeTab == 'history' ? 'active' : ''}">
+                <a th:href="@{/history/list}"><b>History</b></a>
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li th:if="${#authorization.expression('!isAuthenticated()')}">

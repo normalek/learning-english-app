@@ -13,9 +13,10 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'gs-learning-app'
+    baseName = 'gs-spring-boot-docker'
     version =  '0.1.0'
 }
+
 
 repositories {
     mavenCentral()
@@ -40,7 +41,7 @@ dependencies {
     compile 'mysql:mysql-connector-java'
     compile("org.springframework.boot:spring-boot-starter-security")
     compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.1.RELEASE"
-
+    compile 'org.hibernate:hibernate-java8:5.2.12.Final'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

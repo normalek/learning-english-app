@@ -3,6 +3,14 @@ package com.learning.models;
 import javax.persistence.*;
 
 @Entity // This tells Hibernate to make a table out of this class
+//@NamedStoredProcedureQueries({
+//        @NamedStoredProcedureQuery(name = "find_words", procedureName = "find_words",
+//                parameters = {
+//                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "words_amount", type = Integer.class)
+//                        //@StoredProcedureParameter(mode = ParameterMode.OUT, name = "outParam1", type = String.class)
+//                }
+//        )
+//})
 public class Timers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
