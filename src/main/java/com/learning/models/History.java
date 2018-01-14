@@ -1,8 +1,10 @@
 package com.learning.models;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
-//@Component
+@Component
 @Entity
 public class History {
     @Id

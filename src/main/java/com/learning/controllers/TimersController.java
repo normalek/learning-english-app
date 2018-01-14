@@ -15,8 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +31,8 @@ public class TimersController {
     private TimersWrapper wrapper;
     @Autowired
     private HistoryRepository HistoryRepository;
-//    @Autowired
-//    private History history;
+    @Autowired
+    private History history;
 
     @RequestMapping("/view")
     public @ResponseBody
@@ -73,7 +71,6 @@ public class TimersController {
     private void analyzeTest(HttpServletRequest request) {
         Map<String, String[]> map = request.getParameterMap();
         String input_word = "";
-        History history = new History();
         byte bad_counter = 0;
         byte good_counter = 0;
         for (String key : map.keySet()) {
@@ -84,7 +81,7 @@ public class TimersController {
                 Timers record = timersRepository.findOne(Integer.valueOf(id_rec));
                 System.out.println("id_rec: " + id_rec + ",input_word: " + input_word + ", actual_word: " + record.getDictionaryItem().getWord());
                 Integer id_curr_grad = record.getGradationItem().getId_rec();
-                //section for storing records
+                //section for storing records (History module)
                 if (!record.getDictionaryItem().getWord().equals(input_word)) {
                     bad_counter++;
                 } else {
@@ -105,8 +102,7 @@ public class TimersController {
                 }
             }
         }
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//        history.setId_rec(0);
+        //add records for history
         history.setDate(LocalDate.now().toString());
         history.setCorrect(good_counter);
         history.setIncorrect(bad_counter);
