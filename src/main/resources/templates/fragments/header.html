@@ -25,8 +25,9 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li th:if="${#authorization.expression('isAuthenticated()')}">
-                <a  th:href="@{/users/view(name=${#authentication.getPrincipal().getUsername()})}"><span class="glyphicon glyphicon-user"
-                                  th:text="'&nbsp;' + ${#authentication.getPrincipal().getUsername()}"></span></a>
+                <a th:href="@{/users/view(name=${#authentication.getPrincipal().getUsername()})}"><span
+                        class="glyphicon glyphicon-user" aria-hidden="true"
+                        th:text="'&nbsp;' + ${#authentication.getPrincipal().getUsername()}"></span></a>
             </li>
             <li th:if="${#authorization.expression('!isAuthenticated()')}">
                 <a href="/login" th:href="@{/login}">
