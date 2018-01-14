@@ -1,4 +1,4 @@
-package com.learning.controllers;
+package com.learning.controller;
 
 import com.learning.models.Dictionary;
 import com.learning.utils.DictionaryRepository;

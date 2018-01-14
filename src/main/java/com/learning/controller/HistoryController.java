@@ -1,4 +1,4 @@
-package com.learning.controllers;
+package com.learning.controller;
 
 import com.learning.models.History;
 import com.learning.utils.HistoryRepository;
