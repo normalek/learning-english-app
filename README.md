@@ -6,4 +6,6 @@ v0.1 - Spring security basic implementation
 <br />
 v0.2 - new "History" feature
 <br />
+v0.1 - Spring security DB implementation
+<br />
 Current version is stable, but a lot of improvements are coming.
