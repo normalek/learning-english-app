@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -72,7 +73,7 @@ public class TimersController {
     private void analyzeTest(HttpServletRequest request) {
         Map<String, String[]> map = request.getParameterMap();
         String input_word = "";
-        History history = HistoryRepository.findOne(1);
+        History history = new History();
         byte bad_counter = 0;
         byte good_counter = 0;
         for (String key : map.keySet()) {
@@ -106,11 +107,11 @@ public class TimersController {
         }
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 //        history.setId_rec(0);
-//        history.setDate(LocalDate.now().toString());
-        history.setRight(good_counter);
-        history.setWrong(bad_counter);
-        history.setTotal((byte) 20);
+        history.setDate(LocalDate.now().toString());
+        history.setCorrect(good_counter);
+        history.setIncorrect(bad_counter);
+        history.setTotal((byte) (good_counter + bad_counter));
         System.out.println(history.toString());
-//        HistoryRepository.save(history);
+        HistoryRepository.save(history);
     }
 }

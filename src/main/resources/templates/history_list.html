@@ -28,10 +28,10 @@
                 <td th:text="${record.date}"></td>
                 <!--<td th:class="${timer.gradationItem?.id_rec == 1 ? 'maroon' : 'green'}"></td>-->
                 <!--<td th:class="${timer.gradationItem?.id_rec == 1} ? 'maroon' : (${timer.gradationItem?.id_rec == 2} ? 'red' : (${timer.gradationItem?.id_rec == 3} ? 'yellow' : 'green'))"></td>-->
-                <td th:text="${record.right}"></td>
-                <td th:text="${record.wrong}"></td>
+                <td th:text="${record.correct}"></td>
+                <td th:text="${record.incorrect}"></td>
                 <td th:text="${record.total}"></td>
-                <td th:text="${(record.right * 100) / record.total} + '%'"></td>
+                <td th:text="${(record.correct * 100) / record.total} + '%'"></td>
                 <!--<td><a th:href="${ '/dictionary/view?id=' + dictionary.id_rec}">View</a></td>-->
                 <!--<td><a th:href="${'/product/edit/' + dictionary.id_rec}">Edit</a></td>-->
             </tr>

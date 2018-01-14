@@ -22,7 +22,7 @@ public class HistoryController {
         List<History> history_list = HistoryRepository.findAll();
         List<Integer> history_percentage = new ArrayList<>();
         for (History history : history_list) {
-            history_percentage.add(history.getRight()*100/history.getTotal());
+            history_percentage.add(history.getCorrect()*100/history.getTotal());
         }
         int average = ((int) history_percentage.stream().mapToInt(val -> val).average().getAsDouble());
         model.addAttribute("history", history_list);

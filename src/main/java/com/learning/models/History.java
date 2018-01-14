@@ -10,8 +10,8 @@ public class History {
     private Integer id_rec;
     @Column(name = "date", columnDefinition = "DATE")
     private String date;
-    private Byte right;
-    private Byte wrong;
+    private Byte correct;
+    private Byte incorrect;
     private Byte total;
 
     public Integer getId_rec() {
@@ -30,20 +30,20 @@ public class History {
         this.date = date;
     }
 
-    public Byte getRight() {
-        return right;
+    public Byte getCorrect() {
+        return correct;
     }
 
-    public void setRight(Byte right) {
-        this.right = right;
+    public void setCorrect(Byte correct) {
+        this.correct = correct;
     }
 
-    public Byte getWrong() {
-        return wrong;
+    public Byte getIncorrect() {
+        return incorrect;
     }
 
-    public void setWrong(Byte wrong) {
-        this.wrong = wrong;
+    public void setIncorrect(Byte incorrect) {
+        this.incorrect = incorrect;
     }
 
     public Byte getTotal() {
@@ -56,6 +56,6 @@ public class History {
 
     @Override
     public String toString() {
-        return "id_rec: " + id_rec + ", date: " + date + ", right: " + right + ", wrong: " + wrong + ", total: " + total;
+        return "id_rec: " + id_rec + ", date: " + date + ", correct: " + correct + ", incorrect: " + incorrect + ", total: " + total;
     }
 }
