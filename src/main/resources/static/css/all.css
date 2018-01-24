@@ -3,25 +3,25 @@ body {
 }
 
 .maroon {
-    width: 80px;
+    width: 60px;
     background-color: maroon;
     color: white;
 }
 
 .green {
-    width: 80px;
+    width: 60px;
     background-color: forestgreen;
     color: white;
 }
 
 .red {
-    width: 80px;
+    width: 60px;
     background-color: orangered;
     color: white;
 }
 
 .yellow {
-    width: 80px;
+    width: 60px;
     background-color: yellow;
     color: white;
 }

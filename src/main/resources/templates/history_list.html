@@ -16,14 +16,15 @@
         <h2>History of tests</h2>
         <table class="table table-striped">
             <tr>
-                <!--<th>Id</th>-->
+                <th th:width="40">№</th>
                 <th>Date</th>
                 <th>Correct</th>
                 <th>Mistakes</th>
                 <th>Total</th>
                 <th>Percentage</th>
             </tr>
-            <tr th:each="record : ${history}">
+            <tr th:each="record, iterStat : ${history}">
+                <td th:text="${iterStat.count}"></td>
                 <!--<td th:text="${dictionary.id_rec}"><a href="/dictionary/view?id=${dictionary.id_rec}">Id</a></td>-->
                 <td th:text="${record.date}"></td>
                 <!--<td th:class="${timer.gradationItem?.id_rec == 1 ? 'maroon' : 'green'}"></td>-->
