@@ -12,8 +12,8 @@ import java.util.List;
 
 public interface TimersRepository extends JpaRepository<Timers, Integer>, CustomTimersRepository {
 
-    @Query("select t from Timers t where (id_gradation between 1 and 3) order by rand()")
-    List<Timers> findFirstWorst(Pageable pageable);
+    @Query("select t from Timers t where DATEDIFF(now(), date_learned) >= :user_date order by rand()")
+    List<Timers> findFirstWorst(Pageable pageable, @Param("user_date") Integer user_date);
 
 //    @Transactional
 //    @Procedure(name = "find_words")

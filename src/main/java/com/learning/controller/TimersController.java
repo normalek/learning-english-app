@@ -61,7 +61,7 @@ public class TimersController {
         UserDetails  current_user_details = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Users current_user = usersRepository.findByName(current_user_details.getUsername());
         Pageable topWords = new PageRequest(0, current_user.getWords());
-        List<Timers> timers = timersRepository.findFirstWorst(topWords);
+        List<Timers> timers = timersRepository.findFirstWorst(topWords, (int) current_user.getRepetition_period());
         wrapper.setTimers(new ArrayList<>(timers));
         model.addAttribute("timersWrapper", wrapper);
         return "test";
@@ -102,12 +102,12 @@ public class TimersController {
                 } else if (record.getGradationItem().getId_rec() != 4 && record.getDictionaryItem().getWord().equals(input_word)) {//increasing gradation case
                     Gradations good_gradation = gradationsRepository.findOne(id_curr_grad + 1);
                     record.setGradationItem(good_gradation);
-                    if (record.getGradationItem().getId_rec().equals(4)) {
-                        record.setDate_learned(CURRENT_DATE);
-                        System.out.println("--one more learned word--");
-                    }
                     System.out.println("--new good gradation: " + record.getGradationItem().getName());
                     timersRepository.save(record);
+                }
+                if (record.getGradationItem().getId_rec().equals(4)) {
+                    record.setDate_learned(CURRENT_DATE);
+                    System.out.println("--one more learned word--");
                 }
             }
         }
