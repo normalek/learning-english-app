@@ -17,6 +17,8 @@ public class Timers {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id_rec;
     private Integer counter;
+    @Column(name = "date_learned", columnDefinition = "DATE")
+    private String date_learned;
     private Integer need_repeat;
     private String description;
     @OneToOne(cascade = CascadeType.ALL)
@@ -72,5 +74,13 @@ public class Timers {
 
     public void setGradationItem(Gradations gradationItem) {
         this.gradationItem = gradationItem;
+    }
+
+    public String getDate_learned() {
+        return date_learned;
+    }
+
+    public void setDate_learned(String date_learned) {
+        this.date_learned = date_learned;
     }
 }

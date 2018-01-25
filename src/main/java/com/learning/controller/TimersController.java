@@ -23,6 +23,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(path = "/exercises")
 public class TimersController {
+    private static final String CURRENT_DATE = LocalDate.now().toString();
     @Autowired
     private TimersRepository timersRepository;
     @Autowired
@@ -93,21 +94,25 @@ public class TimersController {
                 }
                 //section for decreasing/increasing records just in case for not Maroon color
                 if (record.getGradationItem().getId_rec() != 1 && !record.getDictionaryItem().getWord().equals(input_word)) {//decreasing gradation case
-                    System.out.println("into decreasing" + record.getDictionaryItem().getWord());
+//                    System.out.println("into decreasing" + record.getDictionaryItem().getWord());
                     Gradations bad_gradation = gradationsRepository.findOne(id_curr_grad - 1);
                     record.setGradationItem(bad_gradation);
-                    System.out.println("new bad gradation: " + record.getGradationItem().getName());
+                    System.out.println("--new bad gradation: " + record.getGradationItem().getName());
                     timersRepository.save(record);
                 } else if (record.getGradationItem().getId_rec() != 4 && record.getDictionaryItem().getWord().equals(input_word)) {//increasing gradation case
                     Gradations good_gradation = gradationsRepository.findOne(id_curr_grad + 1);
                     record.setGradationItem(good_gradation);
-                    System.out.println("new good gradation: " + record.getGradationItem().getName());
+                    if (record.getGradationItem().getId_rec().equals(4)) {
+                        record.setDate_learned(CURRENT_DATE);
+                        System.out.println("--one more learned word--");
+                    }
+                    System.out.println("--new good gradation: " + record.getGradationItem().getName());
                     timersRepository.save(record);
                 }
             }
         }
         //add records for history
-        history.setDate(LocalDate.now().toString());
+        history.setDate(CURRENT_DATE);
         history.setCorrect(good_counter);
         history.setIncorrect(bad_counter);
         history.setTotal((byte) (good_counter + bad_counter));
