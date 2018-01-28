@@ -4,6 +4,7 @@ import com.learning.models.Gradations;
 import com.learning.models.History;
 import com.learning.models.Timers;
 import com.learning.models.Users;
+import com.learning.service.UsersHelper;
 import com.learning.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +24,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(path = "/exercises")
 public class TimersController {
-    private static final String CURRENT_DATE = LocalDate.now().toString();
+    private static String CURRENT_DATE = LocalDate.now().toString();
     @Autowired
     private TimersRepository timersRepository;
     @Autowired
@@ -33,9 +34,10 @@ public class TimersController {
     @Autowired
     private HistoryRepository historyRepository;
     @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
     private History history;
+    @Autowired
+    private UsersHelper usersHelper;
+
 
     @RequestMapping("/view")
     public @ResponseBody
@@ -46,6 +48,8 @@ public class TimersController {
     @RequestMapping("/list")
     public String getTimersList(Model model) {
         model.addAttribute("timers", timersRepository.findAll());
+        Users current_user = usersHelper.getCurrentUser();
+        model.addAttribute("user", current_user);
         return "exercises_list";
     }
 
@@ -58,8 +62,7 @@ public class TimersController {
     @RequestMapping("/test")
     public String getTimersTest(Model model) {
         //flexible approach with studying words from user profile
-        UserDetails  current_user_details = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Users current_user = usersRepository.findByName(current_user_details.getUsername());
+        Users current_user = usersHelper.getCurrentUser();
         Pageable topWords = new PageRequest(0, current_user.getWords());
         List<Timers> timers = timersRepository.findFirstWorst(topWords, (int) current_user.getRepetition_period());
         wrapper.setTimers(new ArrayList<>(timers));

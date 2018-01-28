@@ -1,8 +1,11 @@
 package com.learning.models;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 
+@Component
 @Entity // This tells Hibernate to make a table out of this class
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(name = "find_words", procedureName = "find_words",

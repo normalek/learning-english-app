@@ -20,7 +20,7 @@
                 <th>Word</th>
                 <th>Gradation</th>
                 <th>Date learned</th>
-                <th>Counter</th>
+                <!--<th>Counter</th>-->
                 <th>Outdated</th>
             </tr>
             <tr th:each="timer,iterStat : ${timers}">
@@ -30,8 +30,8 @@
                 <!--<td th:class="${timer.gradationItem?.id_rec == 1 ? 'maroon' : 'green'}"></td>-->
                 <td th:class="${timer.gradationItem?.id_rec == 1} ? 'maroon' : (${timer.gradationItem?.id_rec == 2} ? 'red' : (${timer.gradationItem?.id_rec == 3} ? 'yellow' : 'green'))"></td>
                 <td th:text="${timer.date_learned}"></td>
-                <td th:text="${timer.counter}"></td>
-                <td th:text="${timer.need_repeat} ? 'Yes' : 'No'"></td>
+                <!--<td th:text="${timer.counter}"></td>-->
+                <!--<td th:text="${#dates.format(#dates.createNow(), 'yyyy-MMM-dd') - #dates.format(timer.date_learned, 'yyyy-MMM-dd') > user.getRepetition_period()} ? 'Yes' : 'No'"></td>-->
                 <!--<td><a th:href="${ '/dictionary/view?id=' + dictionary.id_rec}">View</a></td>-->
                 <!--<td><a th:href="${'/product/edit/' + dictionary.id_rec}">Edit</a></td>-->
             </tr>
