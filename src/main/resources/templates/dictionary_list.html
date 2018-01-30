@@ -13,7 +13,7 @@
 <div th:replace="fragments/header :: header(dictionary)"></div>
 <div class="container">
     <div th:if="${not #lists.isEmpty(dictionary)}">
-        <h2 class="dct-header-btn">Dictionary</h2>
+        <h2 class="dct-header-btn">Dictionary </h2>
         <a th:href="${'/dictionary/add'}" class="btn btn-success btn-header">Create</a>
         <table class="table table-striped">
             <tr>
@@ -31,7 +31,7 @@
                 <td><a th:href="${'/dictionary/delete?id=' + dictionary.id_rec}" class="btn btn-danger btn-sm">Delete</a></td>
             </tr>
         </table>
-
+        <div th:text="'Total number of words - ' + ${total}"></div>
     </div>
 </div>
 </body>

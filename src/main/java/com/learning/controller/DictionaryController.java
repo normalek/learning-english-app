@@ -23,8 +23,8 @@ public class DictionaryController {
 	private DictionaryRepository DictionaryRepository;
 	@Autowired
 	private TimersRepository TimersRepository;
-	@Autowired
-	private Timers timers;
+//	@Autowired
+//	private Timers timers;
 	@Autowired
 	private GradationsRepository gradationsRepository;
 	@Autowired
@@ -40,6 +40,7 @@ public class DictionaryController {
 	public String addNewWord(@ModelAttribute Dictionary word) {
 		DictionaryRepository.save(word);
 		Byte days = usersHelper.getCurrentUser().getRepetition_period();
+		Timers timers = new Timers();
 		timers.setDictionaryItem(word);
 		timers.setGradationItem(gradationsRepository.findOne(1));
 		timers.setDate_learned(LocalDate.now().minus(Period.ofDays(days)).toString());
@@ -75,6 +76,7 @@ public class DictionaryController {
 	@RequestMapping("/list")
 	public String getDictionaryList(Model model) {
 		model.addAttribute("dictionary", DictionaryRepository.findWithOrder());
+        model.addAttribute("total", DictionaryRepository.count());
 		return "dictionary_list";
 	}
 }

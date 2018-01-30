@@ -107,10 +107,12 @@ public class TimersController {
                     record.setGradationItem(good_gradation);
                     System.out.println("--new good gradation: " + record.getGradationItem().getName());
                     timersRepository.save(record);
+                } else if (record.getGradationItem().getId_rec() == 1 && !record.getDictionaryItem().getWord().equals(input_word)) {
+                    System.out.println("--still maroon: " + record.getGradationItem().getName());
                 }
                 if (record.getGradationItem().getId_rec().equals(4)) {
                     record.setDate_learned(CURRENT_DATE);
-                    System.out.println("--one more learned word--");
+                    System.out.println("<--one more learned word-->");
                 }
             }
         }
